@@ -1,0 +1,15 @@
+Project:
+1. Deploy the project using docker on a VPS
+2. Create CI/CD pipeline
+3. Add a ReadMe file
+
+Backend:
+1. Add Expression Validation
+2. Add a file server to serve the frontend.
+
+Frontend:
+1. Add Expression Validation before network call
+2. Add Tokenization so that pressing "Del" would delete a whole token and not just a character.
+3. Fix the behaviour of the submit operation on multiple simultaneous submits
+4. Add UI for the correct display behaviour.
+5. Fix Replace ^ with ** before seding the expression to the backend.
