@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .center {
+    @apply absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]
+  }
+
+  .centerx {
+    @apply absolute left-[50%] -translate-x-[50%]
+  }
+
+  .notextselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+  }
+}
