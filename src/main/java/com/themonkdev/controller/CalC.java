@@ -1,7 +1,9 @@
 package com.themonkdev.controller;
 
 import com.themonkdev.model.Expression;
+import com.themonkdev.service.ParserService.ParserService;
 import com.themonkdev.validator.ValidationGroups.ExpressionValidationSequence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,9 +16,12 @@ import java.util.Map;
 
 @RestController
 public class CalC {
+    @Autowired
+    private ParserService parserService;
 
-    @GetMapping("/calculate")
-    public double calculate(@Validated(ExpressionValidationSequence.class) @ModelAttribute(name = "expression") Expression expression) {
+    @PostMapping("/calculate")
+    public double calculate(@Validated(ExpressionValidationSequence.class) @RequestBody Expression expression) {
+        expression.setParserService(parserService);
         return expression.parseExpression();
     }
 
