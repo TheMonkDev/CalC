@@ -1,10 +1,14 @@
 interface KeyProps {
   keyValue: string;
+  onKeyPress: (key: string) => void;
 }
 
-function Key({ keyValue }: KeyProps) {
+function Key({ keyValue, onKeyPress }: KeyProps) {
   return (
-    <div className="relative h-full w-full cursor-pointer">
+    <div
+      onClick={() => onKeyPress(keyValue)}
+      className="relative h-full w-full cursor-pointer"
+    >
       <span className="center notextselect">{keyValue}</span>
     </div>
   );
