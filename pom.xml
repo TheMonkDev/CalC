@@ -17,6 +17,10 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <frontendDirectory>${project.basedir}/src/main/react/CalC</frontendDirectory>
+        <node.version>v20.11.0</node.version>
+        <pnpm.version>9.1.1</pnpm.version>
+        <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -40,6 +44,52 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
+                <version>${frontend-maven-plugin.version}</version>
+
+                <configuration>
+                    <workingDirectory>${frontendDirectory}</workingDirectory>
+                    <installDirectory>target</installDirectory>
+                </configuration>
+
+                <executions>
+
+                    <execution>
+                        <id>install node and pnpm</id>
+                        <goals>
+                            <goal>install-node-and-pnpm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <pnpmVersion>${pnpm.version}</pnpmVersion>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>pnpm install</id>
+                        <goals>
+                            <goal>pnpm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>pnpm build</id>
+                        <goals>
+                            <goal>pnpm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
             </plugin>
         </plugins>
     </build>
